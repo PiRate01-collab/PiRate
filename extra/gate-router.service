@@ -1,0 +1,14 @@
+[Unit]
+Description=gate-native routing and NAT
+After=network-online.target
+Wants=network-online.target
+Before=hostapd.service dnsmasq.service
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/usr/local/lib/gate/gate-router-up.sh up
+ExecStop=/usr/local/lib/gate/gate-router-up.sh down
+
+[Install]
+WantedBy=multi-user.target

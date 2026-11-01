@@ -1,0 +1,107 @@
+#!/usr/bin/env bash
+set -u
+CONF=/etc/gate/gate.conf
+if [ ! -r "$CONF" ] && [ "$(id -u)" -ne 0 ]; then
+  exec sudo /usr/local/bin/gate "$@"
+fi
+[ -r "$CONF" ] || { echo "gate-native: конфигурация недоступна: $CONF" >&2; exit 1; }
+# shellcheck disable=SC1090
+source "$CONF"
+
+svc(){ systemctl is-active --quiet "$1" 2>/dev/null; }
+yesno(){ if "$@"; then echo OK; else echo FAIL; fi; }
+wan_ip(){ ip -4 -o addr show dev "$WAN_IF" scope global 2>/dev/null | awk 'NR==1{print $4}'; }
+default_route(){ ip route show default 2>/dev/null | head -1; }
+
+status(){
+  echo "gate-native 0.1.1"
+  echo "AP:      $AP_IFACE  $AP_ADDR/$AP_PREFIX  SSID=$SSID"
+  echo "WAN:     $WAN_IF  IP=${WAN_IP:-$(wan_ip)}"
+  echo "Route:   $(default_route)"
+  echo "router:  $(svc gate-router && echo active || echo inactive)"
+  echo "hostapd: $(svc hostapd && echo active || echo inactive)"
+  echo "dnsmasq: $(svc dnsmasq && echo active || echo inactive)"
+  echo "forward: $(sysctl -n net.ipv4.ip_forward 2>/dev/null || echo '?')"
+}
+
+doctor(){
+  local fail=0
+  check(){ local name="$1"; shift; if "$@"; then printf 'OK   %s\n' "$name"; else printf 'FAIL %s\n' "$name"; fail=1; fi; }
+  check "WAN interface $WAN_IF" test -d "/sys/class/net/$WAN_IF"
+  check "AP interface $AP_IFACE" test -d "/sys/class/net/$AP_IFACE"
+  check "gate-router service" svc gate-router
+  check "hostapd service" svc hostapd
+  check "dnsmasq service" svc dnsmasq
+  check "IPv4 forwarding" test "$(sysctl -n net.ipv4.ip_forward 2>/dev/null)" = 1
+  check "AP address" sh -c 'ip -4 addr show dev "$1" | grep -qF "$2"' sh "$AP_IFACE" "$AP_ADDR/$AP_PREFIX"
+  check "default route" sh -c 'ip route show default | grep -q .'
+  if [ "$(id -u)" -eq 0 ]; then
+    check "NAT rule" iptables -t nat -C POSTROUTING -s "$AP_NET" -o "$WAN_IF" -j MASQUERADE
+  elif command -v sudo >/dev/null 2>&1; then
+    check "NAT rule" sudo iptables -t nat -C POSTROUTING -s "$AP_NET" -o "$WAN_IF" -j MASQUERADE
+  else
+    printf 'WARN NAT rule (нужны root-права для проверки)\n'
+  fi
+  check "DNS config" sh -c 'dnsmasq --test >/dev/null 2>&1'
+  return "$fail"
+}
+
+clients(){
+  echo "Associated Wi-Fi clients:"
+  iw dev "$AP_IFACE" station dump 2>/dev/null | awk '/^Station /{print $2}' || true
+  echo ""
+  echo "DHCP leases:"
+  cat /var/lib/misc/dnsmasq.leases 2>/dev/null || true
+}
+
+wifi(){
+  case "${1:-status}" in
+    status) systemctl --no-pager --full status hostapd 2>/dev/null | sed -n '1,12p' ;;
+    restart) sudo systemctl restart hostapd ;;
+    clients) clients ;;
+    *) echo "usage: gate wifi {status|restart|clients}"; exit 2 ;;
+  esac
+}
+
+dns(){
+  case "${1:-status}" in
+    status)
+      echo "dnsmasq: $(svc dnsmasq && echo active || echo inactive)"
+      echo "upstream resolvers:"
+      grep -vE '^[[:space:]]*(#|$)' /etc/resolv.conf 2>/dev/null || true
+      ;;
+    restart) sudo systemctl restart dnsmasq ;;
+    *) echo "usage: gate dns {status|restart}"; exit 2 ;;
+  esac
+}
+
+restart(){
+  sudo systemctl restart gate-router dnsmasq hostapd
+  status
+}
+
+help(){
+cat <<'TXT'
+gate-native 0.1.1
+
+Commands:
+  gate status
+  gate doctor
+  gate wifi status
+  gate wifi restart
+  gate wifi clients
+  gate dns status
+  gate dns restart
+  gate restart
+TXT
+}
+
+case "${1:-status}" in
+  status) status ;;
+  doctor) doctor ;;
+  wifi) shift; wifi "$@" ;;
+  dns) shift; dns "$@" ;;
+  restart) restart ;;
+  help|-h|--help) help ;;
+  *) help; exit 2 ;;
+esac

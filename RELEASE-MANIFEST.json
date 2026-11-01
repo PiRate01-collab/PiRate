@@ -1,0 +1,641 @@
+{
+  "files": {
+    ".github/ISSUE_TEMPLATE/bug_report.yml": {
+      "bytes": 2121,
+      "mode": 420,
+      "sha256": "80f2db8d7745001ddf248b7105a6f77d9c1b3018d3e8309c5ba37f153e19590a"
+    },
+    ".github/ISSUE_TEMPLATE/config.yml": {
+      "bytes": 280,
+      "mode": 420,
+      "sha256": "fd6b4e759fb28233cc26a3bd7f76f0393e2873564d1a59077e269f4fa0a4c2e6"
+    },
+    ".github/ISSUE_TEMPLATE/installation_help.yml": {
+      "bytes": 872,
+      "mode": 420,
+      "sha256": "a0714d8b510d988f9191b40da75308fd324c2df6b7cff5c3dcca191b7fdb70fc"
+    },
+    ".gitignore": {
+      "bytes": 532,
+      "mode": 420,
+      "sha256": "b7d65b7ca2d34641def4a18f9785dba7269835c55703d0b178a7c4d9721444bb"
+    },
+    "CHANGELOG.md": {
+      "bytes": 914,
+      "mode": 420,
+      "sha256": "33b03c64df8de3f0ab62b7fffa61e691501d8d98671ba71c58e97cc309bf5573"
+    },
+    "CONFIGURATION.md": {
+      "bytes": 2320,
+      "mode": 420,
+      "sha256": "4c8794aab6a57335c6da2866630742636968a0b9bada30f9b43155f16cb0a01d"
+    },
+    "CONTRIBUTING.md": {
+      "bytes": 1257,
+      "mode": 420,
+      "sha256": "2cb158f81b14787efc361faf5ca9b800178465efb8bd98b5814bf7248652224b"
+    },
+    "INSTALL.en.md": {
+      "bytes": 4758,
+      "mode": 420,
+      "sha256": "7c8c60a5bc7b99e85f6e9a60125f35cdf06b89df05ff50f75a3cdeae5b5fc807"
+    },
+    "INSTALL.md": {
+      "bytes": 9421,
+      "mode": 420,
+      "sha256": "782c7263aaad95ead4c5096384f68a8e2e0c776480afd212b16b170e1697843d"
+    },
+    "LICENSE": {
+      "bytes": 1072,
+      "mode": 420,
+      "sha256": "1e76347fc8bef3f63db418d7b5cbc82603a39b42e13efa92f8fbfcf030702dd2"
+    },
+    "README.en.md": {
+      "bytes": 4962,
+      "mode": 420,
+      "sha256": "43201225890af4e792ff3ccedaa233dc3caa9ecf4af9d167b029cdd9fe6ab6a7"
+    },
+    "README.md": {
+      "bytes": 8769,
+      "mode": 420,
+      "sha256": "c00ec9d1ee1ab02d185883b6531ad0fa76ece8da484b205b9a08694d98b37880"
+    },
+    "RELEASE_NOTES.md": {
+      "bytes": 2972,
+      "mode": 420,
+      "sha256": "2fbd43594764bf561501ba3a92393546eb9e687cc432246a167a8b253f003f3c"
+    },
+    "SECURITY.md": {
+      "bytes": 1722,
+      "mode": 420,
+      "sha256": "4f88ebfbe4999a7e731fae05b8ebe119c48696421ba2d349cc50c10d33e74ae0"
+    },
+    "TROUBLESHOOTING.md": {
+      "bytes": 2132,
+      "mode": 420,
+      "sha256": "2bc84fe9352b74e736fe3c385dd19e712872e772d2748138a15e04ab986f16da"
+    },
+    "VERSION": {
+      "bytes": 13,
+      "mode": 420,
+      "sha256": "07879384a922391a40d0c533260e7edcb1c4cdf84a477e79abf64fdd633cda26"
+    },
+    "bin/gate": {
+      "bytes": 3416,
+      "mode": 493,
+      "sha256": "91f0e8eb20f70e64f28d6bf02cb48e1e29d037a3d0d5d52725caa8be2158e97e"
+    },
+    "bin/pirate": {
+      "bytes": 3871,
+      "mode": 493,
+      "sha256": "6fb4ae6c568afb1a76e65242fff32ce9dd6fadf175d2d48fb5e35a6e2a5dc2ef"
+    },
+    "docs/release-0.5.9-beta.1.md": {
+      "bytes": 2972,
+      "mode": 420,
+      "sha256": "2fbd43594764bf561501ba3a92393546eb9e687cc432246a167a8b253f003f3c"
+    },
+    "extra/gate-router.service": {
+      "bytes": 327,
+      "mode": 420,
+      "sha256": "8e939dc93dfca132b2f81394362b26ab5322da70a37879f226016e010e96b388"
+    },
+    "extra/pirate-ap.service": {
+      "bytes": 500,
+      "mode": 420,
+      "sha256": "663f685465ecfb44ac4ff8a164d8035d960d07a5ddc6fbc33949a7a8b67d184a"
+    },
+    "extra/pirate-lan-block.service": {
+      "bytes": 452,
+      "mode": 420,
+      "sha256": "3b7831ed6292cc83300f7bd0e61e045e5b058fe7683f4128a0d114d915e59fa7"
+    },
+    "gate_core/__init__.py": {
+      "bytes": 206,
+      "mode": 420,
+      "sha256": "9e6007ea4807cf7c5b9a589ef8209305c0807d4ebbae39303820c55094c231d8"
+    },
+    "gate_core/connection_engine.py": {
+      "bytes": 2442,
+      "mode": 420,
+      "sha256": "f1debe27d9eab21e953f14c26c964d28e76d95270bb593d7b6501ee53150bf8e"
+    },
+    "gate_core/core.py": {
+      "bytes": 10669,
+      "mode": 420,
+      "sha256": "b2834c237cb1647c3d7721ff05548c8ff4a8fd485df0edd131958e84c2333cf4"
+    },
+    "gate_core/engine.py": {
+      "bytes": 4194,
+      "mode": 420,
+      "sha256": "9f06972f7b352356c76ff28a0a5fd2e5ffbaa81fd8318bb8d4f9d2462c2c4178"
+    },
+    "gate_core/executor.py": {
+      "bytes": 4335,
+      "mode": 420,
+      "sha256": "6a04f667ffd6ad2aeffda2200619a3fd1647a086852cb15306548a9995b0da38"
+    },
+    "gate_core/journal.py": {
+      "bytes": 7870,
+      "mode": 420,
+      "sha256": "7c9306feb614093f63e3708a856407172b55df73b887c1b3e0a7ba4f09a800b4"
+    },
+    "gate_core/mvp/__init__.py": {
+      "bytes": 79,
+      "mode": 420,
+      "sha256": "dc6232bb13374b475ca3b1ef0a9b98945f8e3974026d9b30a14f430ed605d841"
+    },
+    "gate_core/mvp/admin.py": {
+      "bytes": 12874,
+      "mode": 420,
+      "sha256": "c46e867a859d9c0ef37cc3117287d00809a0b6aaea96447b0da13aa72622aacf"
+    },
+    "gate_core/mvp/ap.py": {
+      "bytes": 49242,
+      "mode": 420,
+      "sha256": "18db254b3eb6fa14b1373442d828e31e7f58dc873c1fb246601e99a9a2d073e9"
+    },
+    "gate_core/mvp/ap_profiles.py": {
+      "bytes": 5525,
+      "mode": 420,
+      "sha256": "8af26d5eebba4891d6ba31e3065cfec9aa2f7a3732294ac348187602f89531fb"
+    },
+    "gate_core/mvp/bridge.py": {
+      "bytes": 1586,
+      "mode": 420,
+      "sha256": "7cab0937b6a9763543ec33501d770a4691d8802f2c842d8384cf5679f83223c4"
+    },
+    "gate_core/mvp/config_converter.py": {
+      "bytes": 14175,
+      "mode": 420,
+      "sha256": "b9a685055740fb420569c0274cbc497c2326c0bbed4297ed9618aa1f35ccbaf3"
+    },
+    "gate_core/mvp/connections.py": {
+      "bytes": 32043,
+      "mode": 420,
+      "sha256": "c37bee57964c51f4132404d5e98d9ed546c6a433ecf8d29f6533c9a55f1f1737"
+    },
+    "gate_core/mvp/diagnostics.py": {
+      "bytes": 16434,
+      "mode": 420,
+      "sha256": "f49c7bce5287f752fef3f5bc3c2852097e9f6bdaaa69d9aa179c7c932bbc4144"
+    },
+    "gate_core/mvp/dns_auto.py": {
+      "bytes": 2119,
+      "mode": 420,
+      "sha256": "aa8bc5491dc53e8cddd3b5e5f4ebfac42b360afa012e767ff068d8b49d224558"
+    },
+    "gate_core/mvp/legacy_cleanup.py": {
+      "bytes": 282,
+      "mode": 420,
+      "sha256": "3e9f336fabb40fbd599b101fc95e9278662c0a6c50c739b4b41433acd6930f48"
+    },
+    "gate_core/mvp/mac.py": {
+      "bytes": 3846,
+      "mode": 420,
+      "sha256": "461bf416f64d1fae0a717cf4623355db39f18c3e19ebe51153383af80add326d"
+    },
+    "gate_core/mvp/management.py": {
+      "bytes": 5325,
+      "mode": 420,
+      "sha256": "97978dab7afc0110945d8cd77f3f45b023ed8b5cf3da8d8123534d1ec7c9e387"
+    },
+    "gate_core/mvp/management_guard.py": {
+      "bytes": 892,
+      "mode": 420,
+      "sha256": "49606459ac58320e75adebd4ec0faa7e635f450f42f6abf9a198e097c48084d0"
+    },
+    "gate_core/mvp/management_runtime.py": {
+      "bytes": 18508,
+      "mode": 420,
+      "sha256": "78ee8fa43c134d27f2179ddefc432eb6941e30421a0908ed318397462f647269"
+    },
+    "gate_core/mvp/openvpn_compat.py": {
+      "bytes": 14114,
+      "mode": 420,
+      "sha256": "0d6866d219f2271d44ec3c28cddd4619fb96c57c813783c81665b6f74ab3c901"
+    },
+    "gate_core/mvp/openvpn_import.py": {
+      "bytes": 17616,
+      "mode": 420,
+      "sha256": "0abffd0275c2a613faf05574f5f6393213abf6daed721c39fe454c38b363b4cc"
+    },
+    "gate_core/mvp/preflight.py": {
+      "bytes": 11627,
+      "mode": 420,
+      "sha256": "b4feaf8f656e88e28406016118b21198f6c204884b00089dd81411044f92c81a"
+    },
+    "gate_core/mvp/profile_v1.py": {
+      "bytes": 4547,
+      "mode": 420,
+      "sha256": "487a7d09de93c0c9f32e31202074d245fa0050e9cce078150a59036be4061ea6"
+    },
+    "gate_core/mvp/profiles.py": {
+      "bytes": 13437,
+      "mode": 420,
+      "sha256": "ebd21d4c5b17d85cc1c0c3ecb89ce5a6d9af39184e356a0dc09edcce50ba4e70"
+    },
+    "gate_core/mvp/proxy.py": {
+      "bytes": 13127,
+      "mode": 420,
+      "sha256": "87ceb3e1b6a87abde0869c8bc227fed83bae10375305fb438ee1efed50977bd0"
+    },
+    "gate_core/mvp/redaction.py": {
+      "bytes": 1978,
+      "mode": 420,
+      "sha256": "cdee71c5eb66bee20e650edee5cc41cbe9dbbe9025ee0319f2321571a8e49e05"
+    },
+    "gate_core/mvp/router.py": {
+      "bytes": 41867,
+      "mode": 420,
+      "sha256": "ee1caccb351c240987bd56018ce9ef3ee8371fafcd5456bdd1f189d2a91d0116"
+    },
+    "gate_core/mvp/router_service.py": {
+      "bytes": 14024,
+      "mode": 420,
+      "sha256": "abeeef2caa43475bcab7baf8abda43bc7bd070d6f063131502a97aac1ba42e7e"
+    },
+    "gate_core/mvp/support.py": {
+      "bytes": 20478,
+      "mode": 420,
+      "sha256": "e7b0920c7fe5fdd2d454efb53e91de8c5eca9c25ece5a4f10ff87432d4a3c2d9"
+    },
+    "gate_core/mvp/tunnels.py": {
+      "bytes": 31454,
+      "mode": 420,
+      "sha256": "f585a960a19708f97fddfd0260ca8262490e8cbcef3ea2940c1f982728fe66a5"
+    },
+    "gate_core/mvp/wifi_health.py": {
+      "bytes": 7360,
+      "mode": 420,
+      "sha256": "46190c4b7c168b4c2eef8fa571d2abf14d1f461343cdce3ad9d2fab99953c91d"
+    },
+    "gate_core/mvp/wifi_performance.py": {
+      "bytes": 12938,
+      "mode": 420,
+      "sha256": "96cc3b3feb49907b874035edd16a0f93e008d6b97678994dae4c7d56aa6b3816"
+    },
+    "gate_core/namespace_probe.py": {
+      "bytes": 4087,
+      "mode": 420,
+      "sha256": "d186316acc554d104009d37e44a24f292f9d38949b97b55ee97faa28ad02c444"
+    },
+    "gate_core/network_policy.py": {
+      "bytes": 2522,
+      "mode": 420,
+      "sha256": "af2bfddaac468354fd3823177981cdec832ac245d9d94f6402db69f82ddab3c8"
+    },
+    "gate_core/openvpn_config.py": {
+      "bytes": 10490,
+      "mode": 420,
+      "sha256": "8dd342fec18d4b7739fc9c47175063f8c61a95fbda003ad7838daa6aff476445"
+    },
+    "gate_core/openvpn_syntax.py": {
+      "bytes": 4892,
+      "mode": 420,
+      "sha256": "8401d4dc7aff246d7f542e8130565ada705f7048cb069e4e6c795dca73b0de9e"
+    },
+    "gate_core/plans.py": {
+      "bytes": 2850,
+      "mode": 420,
+      "sha256": "6ca0838f1344911f495f5359ec9785e734fc1d2ba9d0ef549315ad226deea379"
+    },
+    "gate_core/process_lock.py": {
+      "bytes": 1809,
+      "mode": 420,
+      "sha256": "262c5be958796f3f99ff0f31bf9a3c735ad47561a74aeca34a265f4feebd7be2"
+    },
+    "gate_core/recovery.py": {
+      "bytes": 4157,
+      "mode": 420,
+      "sha256": "0e09374e2a7ca0c4ce0e80cd640bb82af8db53f1604144a1b064ca64220da9e5"
+    },
+    "gate_core/resources.py": {
+      "bytes": 2241,
+      "mode": 420,
+      "sha256": "1a6ae8dc4584f5e1d535179a686a3c97a32e3d86e98c11bf5175e21b7490a9ba"
+    },
+    "gate_core/transport_probe.py": {
+      "bytes": 4979,
+      "mode": 420,
+      "sha256": "761a0f9e4026ba03710ac59452499f215513aac50679b03b0254fa4f220ff28b"
+    },
+    "gate_core/uplink_probe.py": {
+      "bytes": 9672,
+      "mode": 420,
+      "sha256": "51f49ae7cb922b33e8b15dc180f939b18420a4873aad1d91b272d6fe88291779"
+    },
+    "gate_core/wifi/__init__.py": {
+      "bytes": 81,
+      "mode": 420,
+      "sha256": "3c2cd0b9cf3f067425f41eaf4a8bc550ed7929dcc058e66c49c074f2b3501dc3"
+    },
+    "gate_core/wifi/apply/__init__.py": {
+      "bytes": 464,
+      "mode": 420,
+      "sha256": "0218c2c9cd6e61f8117ad6ed846ac1d2a49552d5b687402a0955117053de1fd7"
+    },
+    "gate_core/wifi/apply/clock.py": {
+      "bytes": 277,
+      "mode": 420,
+      "sha256": "d45519635176f982947814d0f2ee1fb0ff6197429802da6ccb7e96627c0381a1"
+    },
+    "gate_core/wifi/apply/controller.py": {
+      "bytes": 15938,
+      "mode": 420,
+      "sha256": "604883da7e0fdc6dd76227af307218e48d93e2ce694e1f3726cc3b60ff217a1e"
+    },
+    "gate_core/wifi/apply/executor.py": {
+      "bytes": 4119,
+      "mode": 420,
+      "sha256": "032bfa69d3e482e6a5ceefd7600db884e941b01517005351e75ee6cca04dab62"
+    },
+    "gate_core/wifi/apply/persistence.py": {
+      "bytes": 3294,
+      "mode": 420,
+      "sha256": "44cc5f7b095a6f41f71cbe4e0a228f89a0b2c9db785d63de0cbb90b26a0d3d4f"
+    },
+    "gate_core/wifi/apply/snapshots.py": {
+      "bytes": 1901,
+      "mode": 420,
+      "sha256": "72888349520973601b25bf78eed01f87bb5d81275ba3e876366466efb7ccec45"
+    },
+    "gate_core/wifi/apply/state.py": {
+      "bytes": 1393,
+      "mode": 420,
+      "sha256": "e8a7d58e8960687f5516a49a935def87e2645c997c841c7e258503c05041956a"
+    },
+    "gate_core/wifi/apply/watchdog.py": {
+      "bytes": 1345,
+      "mode": 420,
+      "sha256": "8b7bb5d6ba9cc4a97100e2e2a620df50d903bf7511b1acc5f3e6b91a2c29884b"
+    },
+    "gate_core/wifi/broker/__init__.py": {
+      "bytes": 86,
+      "mode": 420,
+      "sha256": "1ce55f37dfaf59901c4330e6b1f7ed1ff7be9d176ceddb39f8d17bedcb41958c"
+    },
+    "gate_core/wifi/broker/contracts.py": {
+      "bytes": 4028,
+      "mode": 420,
+      "sha256": "1267b1d992d1acae7a217f09523f122780d2c74606b44baa0d4f97e1de0e15c1"
+    },
+    "gate_core/wifi/broker/core.py": {
+      "bytes": 11597,
+      "mode": 420,
+      "sha256": "17dd0df23081ac493418fcc128d69e4c5858804a3377b2e45723c1e6e840e221"
+    },
+    "gate_core/wifi/broker/readiness.py": {
+      "bytes": 956,
+      "mode": 420,
+      "sha256": "7113e90611fba2c8e2de403c7b1ec5aef68801be43fa612cd382ee07bfe57ebf"
+    },
+    "gate_core/wifi/broker/secrets.py": {
+      "bytes": 2466,
+      "mode": 420,
+      "sha256": "f16b4598eb4036c5855067aa1f080646bc6e264afa3f04e5a05106b611d8f6fa"
+    },
+    "gate_core/wifi/broker/transport.py": {
+      "bytes": 8014,
+      "mode": 420,
+      "sha256": "eae814f85be27ea4e1e718d203fc76fb0388415867cece53f40e6d0410bf9610"
+    },
+    "gate_core/wifi/isolation/__init__.py": {
+      "bytes": 78,
+      "mode": 420,
+      "sha256": "164d9881cb764a508588f811b752b839707b60e767fcc83a889f938e59882f62"
+    },
+    "gate_core/wifi/isolation/cross_uid.py": {
+      "bytes": 20392,
+      "mode": 420,
+      "sha256": "c662b57e06530db6193514e0b33e741b2925356c8c7997cf4d89473cc17d3cd9"
+    },
+    "gate_core/wifi/isolation/entrypoints.py": {
+      "bytes": 4995,
+      "mode": 420,
+      "sha256": "66fe2aff02c9c0dbbaa3e083f65bcb31cee65942fc7957c263ab7b227e2aaa1a"
+    },
+    "gate_core/wifi/isolation/hardware.py": {
+      "bytes": 2171,
+      "mode": 420,
+      "sha256": "69fd826747e76a9561dbc2d8258f9deb54e7b0b68d0cb3d7d75f3aad220d37b0"
+    },
+    "gate_core/wifi/isolation/ipc.py": {
+      "bytes": 9583,
+      "mode": 420,
+      "sha256": "2d26fa6404e21e5c69e5e3ff7c1499e63498dfedac7e1e3873e569580c885d59"
+    },
+    "gate_core/wifi/isolation/secret_store.py": {
+      "bytes": 1962,
+      "mode": 420,
+      "sha256": "3346c15771fb034e23312f161b75d54a60dd10f0cfd8c1f4ab6af23e81fdc75e"
+    },
+    "gate_core/wifi/isolation/unix_transport.py": {
+      "bytes": 13190,
+      "mode": 420,
+      "sha256": "3e2de2c7ac51fb8a491c392a29ec49f0d14239f50628ec7289cf498f90c1b33a"
+    },
+    "gate_core/wifi/isolation/watchdog.py": {
+      "bytes": 3656,
+      "mode": 420,
+      "sha256": "991701948f40653c2862b88c5736ba867723e93fc32f9f842566c54d38b5b8f1"
+    },
+    "gate_core/wifi/models.py": {
+      "bytes": 4465,
+      "mode": 420,
+      "sha256": "9d08493d0c12446e385dd9eaf413ba33c1db9cdf4228c9e0b5a94cfa1c7704f9"
+    },
+    "gate_core/wifi/radio.py": {
+      "bytes": 5828,
+      "mode": 420,
+      "sha256": "eb1de80d8af7cad2e7956b72faf37baf105f1bcb23139c2ce0c5bbe651edbee7"
+    },
+    "gate_core/wifi/safe_apply.py": {
+      "bytes": 1573,
+      "mode": 420,
+      "sha256": "a00936aa13667e483cb0f8e4cd8ad10aada80c1426b0d8c4dd0344bc2be82607"
+    },
+    "gate_core/wifi/store.py": {
+      "bytes": 5855,
+      "mode": 420,
+      "sha256": "18a87451006f498321435c8358897150dcc9a5e015959af830ecb36e4d16ed7c"
+    },
+    "gate_core/wifi/system/__init__.py": {
+      "bytes": 82,
+      "mode": 420,
+      "sha256": "e5a252abb4f699fa99e9088d1919e59cb9b232cb8ddef1d2fc79c920add632d4"
+    },
+    "gate_core/wifi/system/executor.py": {
+      "bytes": 18499,
+      "mode": 420,
+      "sha256": "a6848ef1421e7aac93cf7c1ed4c4fc4fac41bb3a1c47ec4a7cbe92b225a0bd89"
+    },
+    "gate_core/wifi/system/renderer.py": {
+      "bytes": 6771,
+      "mode": 420,
+      "sha256": "251efb79ecb97a7ac912afc40b157899772191c53cd09124241ac31ef9e91c34"
+    },
+    "gate_core/wifi/system/storage.py": {
+      "bytes": 7813,
+      "mode": 420,
+      "sha256": "970ec8c27a4839137bbdf0aefe8839f6e81d0c1a1ab09a829a66f7597b08a8be"
+    },
+    "gate_core/wifi/system/transaction.py": {
+      "bytes": 14157,
+      "mode": 420,
+      "sha256": "91bd427f771c31aa5f627be64fa650870ca023b06ba021383d9d2337b4bd2b5c"
+    },
+    "gate_core/wifi/system/watchdog.py": {
+      "bytes": 4742,
+      "mode": 420,
+      "sha256": "0b9b29070838e06e2d185f9fc31687f8ab4ca1c1bbb68fa607d316b8954636f8"
+    },
+    "gate_core/wifi/validation.py": {
+      "bytes": 7877,
+      "mode": 420,
+      "sha256": "4d7b1cb01229b67a863bc6edca33cd0ffe38302b13d46ed4bbcf84855dfb6f1b"
+    },
+    "install-pi.sh": {
+      "bytes": 143,
+      "mode": 493,
+      "sha256": "0a53dd85a6453a192bbb570bd3b763e0dfe7f1bfa5007db43e4a92833a4d6c4d"
+    },
+    "install.sh": {
+      "bytes": 209,
+      "mode": 493,
+      "sha256": "20d896e34fb11debf78404953072b95b3ec50b1e993a94e41e6981e834c3f062"
+    },
+    "lib/gate-router-up.sh": {
+      "bytes": 1453,
+      "mode": 493,
+      "sha256": "9552cc636e7ad6c8be794b12f63585e903809c5cd8f6b87c68f69f05a2ab4777"
+    },
+    "site/index.html": {
+      "bytes": 3098,
+      "mode": 420,
+      "sha256": "af4bb418fdd66eee5811de0558312ff81224cf213988f04bad6c701c3ef23985"
+    },
+    "tests/__init__.py": {
+      "bytes": 224,
+      "mode": 420,
+      "sha256": "9911ecad493c8252f1ac95138f1c0fe713a84899fa4f939ffce97b34a515e369"
+    },
+    "tests/ui/openvpn_import.cjs": {
+      "bytes": 29998,
+      "mode": 420,
+      "sha256": "4b3ecc6f2321b60b8d59414ceb39d3ecb98e705591fd6d1d36f00f3a3807fc49"
+    },
+    "tests/unit/__init__.py": {
+      "bytes": 0,
+      "mode": 420,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "tests/unit/test_api.py": {
+      "bytes": 4239,
+      "mode": 420,
+      "sha256": "76eca2c0b11c489d8c079ea41377f28e52fc770f430970832530a823073cd760"
+    },
+    "tests/unit/test_connection_engine.py": {
+      "bytes": 24106,
+      "mode": 420,
+      "sha256": "e23fa5d78a668d8ee8e6c0da6e01588427f8371243b5c4948f2aea04457dd7f3"
+    },
+    "tests/unit/test_core.py": {
+      "bytes": 1147,
+      "mode": 420,
+      "sha256": "7ffc8690d828cfe5520a4e5ede58279a0ad01c227be2ea7418e245c434cf1dd9"
+    },
+    "tests/unit/test_management_access.py": {
+      "bytes": 24009,
+      "mode": 420,
+      "sha256": "a09f76738dea8ce684bebf9dff7641c6af0b977e479f642d3d3f5ea16363e736"
+    },
+    "tests/unit/test_pi_installer.py": {
+      "bytes": 35483,
+      "mode": 420,
+      "sha256": "2a747dab771a310902121df795db52d62e203ae8387dbbb52547294aea7da619"
+    },
+    "tests/unit/test_public_candidate.py": {
+      "bytes": 5174,
+      "mode": 420,
+      "sha256": "a19c696cf8d3a020227ea5beebb69632852c74c3fae98dd27dc47ea3abd14c9c"
+    },
+    "tools/build_mvp_release.py": {
+      "bytes": 4117,
+      "mode": 493,
+      "sha256": "a0b5fb8e37c6dc4f4022854625f0d2a909295a6dd572ff8e4959c3dfbc86c09c"
+    },
+    "tools/install_pi.py": {
+      "bytes": 43682,
+      "mode": 493,
+      "sha256": "809afb8f72828aec75a1d697c925223b256d347cd70e00e3626625ab97305de2"
+    },
+    "web/app.js": {
+      "bytes": 11367,
+      "mode": 420,
+      "sha256": "c444e00d28c601e71b75c2fb4f8f83d5cc08b0c8e5308229e116b76db2270bb4"
+    },
+    "web/index.html": {
+      "bytes": 13623,
+      "mode": 420,
+      "sha256": "25816c0e2a6a7c07dadf7dc1f9594b35ffa8875e72adb3f5f7320fea9d593751"
+    },
+    "web/manage.py": {
+      "bytes": 5352,
+      "mode": 420,
+      "sha256": "62c9f7a9a1e5f4ec556a5dcf02561fccd427b890015d58422afb66100a3ffbf6"
+    },
+    "web/mock_apply.py": {
+      "bytes": 1854,
+      "mode": 420,
+      "sha256": "8c547ea35dc6a1f3fc08ebe8a1663f0da3f10d49f500505f88276ece0b3793e2"
+    },
+    "web/mvp.html": {
+      "bytes": 20847,
+      "mode": 420,
+      "sha256": "e6ed97545c993416d684d4ead7a2c204fa16cc466f0b286138d178d03a42c80b"
+    },
+    "web/mvp.js": {
+      "bytes": 53674,
+      "mode": 420,
+      "sha256": "fe722d1b0198fdd8d4220e2328282509c195107cf57e4a00fa23d2d20c533868"
+    },
+    "web/mvp_api.py": {
+      "bytes": 19716,
+      "mode": 420,
+      "sha256": "ebdda965e1ff8380914edea82eda2bebb7295dc5086c51b379230c7f1c1f637a"
+    },
+    "web/openvpn_import.js": {
+      "bytes": 3015,
+      "mode": 420,
+      "sha256": "92e5b5bd40198d0ac92c4a34bde27f571358fde3aa9a52beae21c14514a11e70"
+    },
+    "web/router.css": {
+      "bytes": 8514,
+      "mode": 420,
+      "sha256": "4e9146ede3fed88f2a086fbab5ee3b056ea9f51774be41b833e54ee452b22f29"
+    },
+    "web/safe-apply.js": {
+      "bytes": 4433,
+      "mode": 420,
+      "sha256": "69c19daf9d6a56d3da9a9773606fd713555f96eaed1bd1949d85d13c799f99cb"
+    },
+    "web/server.py": {
+      "bytes": 19608,
+      "mode": 420,
+      "sha256": "1338b95dde39842d09c7f7b2576bf6602872d94ade959be47e918ee2add830d6"
+    },
+    "web/style.css": {
+      "bytes": 4832,
+      "mode": 420,
+      "sha256": "06701d2e52e5ca13449cd87806be769000959197f20cd89af00e139fcd287656"
+    },
+    "web/wifi.js": {
+      "bytes": 8992,
+      "mode": 420,
+      "sha256": "fb4b7aaa5595fae42ec7d6fe13aa5758b1b0894660b3de3ed2df57c98dc6b889"
+    }
+  },
+  "schema": 1,
+  "version": "0.5.9-beta.1"
+}

@@ -1,0 +1,19 @@
+[Unit]
+Description=PiRate AP and selected VPN/proxy controller
+After=pirate-lan-block.service network-online.target
+Requires=pirate-lan-block.service
+Wants=network-online.target
+Conflicts=hostapd.service dnsmasq.service
+
+[Service]
+Type=simple
+WorkingDirectory=/opt/pirate
+Environment=PATH=/usr/sbin:/usr/bin:/sbin:/bin
+ExecStart=/opt/pirate/bin/pirate web --native-vpn --data-dir /var/lib/pirate
+Restart=on-failure
+RestartSec=3
+KillMode=control-group
+UMask=0077
+
+[Install]
+WantedBy=multi-user.target

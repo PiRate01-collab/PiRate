@@ -1,0 +1,5 @@
+blank_issues_enabled: false
+contact_links:
+  - name: "PiRate Telegram / Новости и багрепорты"
+    url: "https://t.me/pirate_open"
+    about: "Preferred community channel where comments/discussions are available. If you cannot post there, use an Issue template."

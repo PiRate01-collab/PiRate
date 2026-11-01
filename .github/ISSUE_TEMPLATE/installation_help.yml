@@ -1,0 +1,28 @@
+name: "Installation help / Помощь с установкой"
+description: "Question or setup issue on Raspberry Pi OS 64-bit"
+title: "[Install] "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Check README and INSTALL.md first. Prefer https://t.me/pirate_open where channel discussions are available. Never post passwords, private VPN configs or SSH keys.
+  - type: input
+    id: model
+    attributes:
+      label: Hardware / Оборудование
+      placeholder: "Raspberry Pi model, Wi-Fi adapter"
+    validations:
+      required: true
+  - type: input
+    id: os
+    attributes:
+      label: OS and PiRate version
+      placeholder: "Raspberry Pi OS 64-bit / v0.5.9-beta.1"
+    validations:
+      required: true
+  - type: textarea
+    id: question
+    attributes:
+      label: What do you need help with?
+    validations:
+      required: true

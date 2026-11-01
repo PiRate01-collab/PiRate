@@ -1,0 +1,423 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>PiRate · Домашний роутер</title>
+<link rel="stylesheet" href="/router.css">
+</head>
+<body>
+<div class="shell">
+<aside>
+<h1>◈ PiRate</h1>
+<p class="muted">Интернет под вашим контролем</p>
+<nav aria-label="Навигация">
+<button class="nav active" data-screen="dashboard">Обзор</button>
+<button class="nav" data-screen="wifi">Wi-Fi</button>
+<button class="nav" data-screen="connections">Подключения</button>
+<button class="nav" data-screen="system">Система</button>
+<button class="nav" data-screen="logs">Логи</button>
+</nav>
+<a class="sidebar-note telegram-link" href="https://t.me/pirate_open" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M21.8 3.2 18.5 20c-.2 1-1 1.2-1.8.7l-5-3.7-2.4 2.3c-.3.3-.5.5-1 .5l.4-5.1L18 6.3c.4-.4-.1-.6-.6-.3L5.9 13.2 1 11.7c-1-.3-1-1 .2-1.5L20.4 2.8c.9-.3 1.7.2 1.4.4Z"/></svg> Telegram</a>
+</aside>
+<main>
+<header>
+<div>
+<p class="eyebrow">PIRATE ROUTER</p>
+<h2 id="heading">Обзор</h2>
+</div>
+<span id="live-state" class="chip">Загрузка…</span>
+</header>
+<div id="message" role="status" aria-live="polite">
+</div>
+<article id="confirmation" class="hidden">
+<h3>Всё работает?</h3>
+<p id="countdown">
+</p>
+<div class="actions">
+<button id="confirm" class="primary" type="button">Подтвердить подключение</button>
+<button id="rollback" type="button">Вернуть прежнее</button>
+</div>
+</article>
+<section id="dashboard" class="panel">
+<p class="intro">Ваш интернет, подключения и домашняя сеть — в одном месте.</p>
+<article class="quick-connect">
+<div>
+<h3>Выберите подключение</h3>
+<p class="muted">Переключение с проверкой и возможностью вернуть прежние настройки.</p>
+</div>
+<label>Сохранённый профиль<select id="quick-profile">
+</select>
+</label>
+<button id="quick-connect" class="primary" type="button">Подключиться</button>
+</article>
+<div class="cards">
+<article>
+<p class="muted">Интернет</p>
+<h3 id="internet-state">—</h3>
+<p id="check-time" class="muted">
+</p>
+</article>
+<article>
+<p class="muted">Соединение</p>
+<h3 id="active-name">—</h3>
+<p id="active-kind" class="muted">
+</p>
+<details>
+<summary>Состояние VPN</summary>
+<p id="vpn-status" class="muted">
+</p>
+</details>
+</article>
+<article>
+<p class="muted">Внешний IP</p>
+<h3 id="external-ip">—</h3>
+<p class="muted">Ответ проверки через выбранное соединение</p>
+</article>
+<article>
+<p class="muted">DNS</p>
+<h3 id="dns-state">—</h3>
+<p id="dns-resolver" class="muted">
+</p>
+</article>
+<article>
+<p class="muted">Wi-Fi</p>
+<h3 id="ssid">—</h3>
+<p id="ap-status" class="muted">
+</p>
+<p id="wifi-health-advice">
+</p>
+<button id="retry-wifi" type="button">Повторить запуск Wi-Fi</button>
+
+</article>
+<article>
+<p class="muted">Трафик Wi-Fi</p>
+<h3 id="speed">Нет данных</h3>
+<p class="muted">↓ к клиентам · ↑ от клиентов</p>
+</article>
+</div>
+<article>
+<h3>Клиенты <span id="client-count">
+</span>
+</h3>
+<div id="client-list">Нет данных</div>
+</article>
+<div class="actions">
+<button id="check-internet" type="button">Проверить интернет</button>
+<button id="dashboard-start" class="primary" type="button">Настроить Wi-Fi</button>
+<button id="disconnect" class="danger" type="button">Отключить роутер</button>
+</div>
+</section>
+<section id="wifi" class="panel hidden">
+<article><div class="section-heading"><h3>Профили Wi-Fi</h3><button id="ap-new" type="button">Создать профиль Wi-Fi</button></div>
+<p id="ap-active-state" role="status">Загрузка профилей…</p>
+<label>Выбранный профиль Wi-Fi<select id="ap-selected"></select></label>
+<button id="ap-apply" class="primary" type="button">Применить выбранный профиль Wi-Fi</button>
+<p class="muted">Для первого запуска подключите роутер на экране «Подключения». При переключении Wi-Fi текущее VPN/Proxy остаётся прежним. Если сеть пропадёт, подключитесь к новому SSID и откройте панель снова. Подтвердите за 90 секунд; иначе вернутся прежние настройки. Доверенный Ethernet-доступ сохраняется.</p>
+<div id="ap-profile-list"></div></article>
+<article>
+<h3 id="ap-form-title">Создать профиль Wi-Fi</h3>
+<p id="ap-editor-note" class="muted">Сохранение не меняет работающую сеть.</p>
+<p id="wifi-draft-note" class="muted hidden">Изменения не сохранены. Сохраните профиль, затем примените его отдельно.</p>
+<form id="wifi-form">
+<label>Название профиля<input id="ap-name" required maxlength="80" autocomplete="off"></label>
+<fieldset class="wifi-settings-group"><legend>SSID и безопасность</legend>
+<div class="fields">
+<label>SSID<input id="wifi-ssid" required maxlength="32" value="PiRate" autocomplete="off">
+</label>
+<label>Пароль Wi-Fi<input id="wifi-password" type="password" autocomplete="new-password" placeholder="8–63 символа; пусто = сохранённый">
+</label>
+<label>Защита<select id="wifi-security">
+<option value="wpa2">WPA2</option>
+<option value="wpa3">WPA3</option>
+</select>
+</label>
+</div>
+</fieldset>
+<fieldset class="wifi-settings-group"><legend>Радио: интерфейс и канал</legend>
+<div class="fields">
+<label>Wi-Fi интерфейс<select id="wifi-interface" required>
+</select>
+</label>
+<label>Страна (две буквы, например RU)<input id="wifi-country" required maxlength="2" pattern="[a-zA-Z]{2}" placeholder="Например, DE">
+</label>
+<label>Диапазон<select id="wifi-band">
+<option value="auto">Автоматически</option>
+<option value="2.4">2.4 GHz</option>
+<option value="5">5 GHz</option>
+</select>
+</label>
+<label>Канал<select id="wifi-channel">
+<option value="0">Автоматически</option>
+</select>
+</label>
+<label>Ширина канала<select id="wifi-width">
+<option value="auto">Автоматически</option>
+<option value="20">20 MHz</option>
+<option value="40">40 MHz</option>
+<option value="80">80 MHz (VHT)</option>
+</select>
+</label>
+</div>
+</fieldset>
+<fieldset class="wifi-settings-group"><legend>MAC и TTL / fingerprint</legend>
+<div class="fields">
+<label>MAC AP<select id="mac-mode">
+<option value="keep">Оставить текущий</option>
+<option value="generate">Случайный</option>
+<option value="manual">Вручную</option>
+<option value="hardware">Заводской MAC</option>
+</select>
+</label>
+<label>MAC адрес<input id="mac-address" placeholder="02:ab:cd:12:34:56" maxlength="17">
+</label>
+<label>Fingerprint / TTL (необязательно)<select id="wifi-fingerprint">
+<option value="default">Как у клиента</option>
+<option value="ttl64">IPv4 TTL 64 · Direct/VPN</option>
+<option value="ttl128">IPv4 TTL 128 · Direct/VPN</option>
+</select>
+</label>
+</div>
+<div class="actions">
+<button id="mac-generate" type="button">Сгенерировать MAC</button>
+<button id="mac-hardware" type="button">Заводской MAC</button>
+</div>
+</fieldset>
+<div class="actions">
+<button id="ap-save" class="primary" type="submit">Сохранить профиль Wi-Fi</button>
+<button id="ap-cancel" type="button">Отменить редактирование</button>
+</div>
+<p class="muted">Сохранение не перезапускает точку доступа и не отключает клиентов. Пустой пароль при редактировании сохраняет прежний.</p>
+</form>
+</article>
+<article>
+<h3>Состояние AP и клиенты</h3>
+<p id="wifi-active" class="muted"></p>
+<p id="wifi-health-summary" class="muted"></p>
+<p id="radio-info" class="muted">Возможности проверяются при запуске. TTL не подменяет TCP/IP fingerprint устройства.</p>
+<div class="actions">
+<button id="wifi-retry" type="button">Повторить запуск Wi-Fi</button>
+<button id="radio-check" type="button">Возможности адаптера</button>
+<button id="wifi-off" class="danger" type="button">Выключить Wi-Fi и роутер</button>
+</div>
+<p class="muted">Отключение остановит весь роутер и заблокирует трафик клиентов. Работа точки доступа не подтверждает доступ в интернет на устройствах.</p>
+<h4>Подключённые устройства</h4>
+<div id="wifi-clients">Нет данных</div>
+<h4>Диагностика адаптера</h4>
+<pre id="wifi-health-details"></pre>
+<h4>Техническая причина Wi-Fi</h4>
+<pre id="wifi-error-detail"></pre>
+</article>
+</section>
+<section id="connections" class="panel hidden">
+<article>
+<h3>Подключиться к интернету</h3>
+<p class="muted">Выберите сохранённый профиль. Новые настройки вступят в силу после проверки и подтверждения.</p>
+<div class="fields">
+<label>Профиль<select id="selected-profile" required>
+</select>
+</label>
+<label>Кабель интернета (WAN)<select id="wan-interface" required>
+</select>
+</label>
+</div>
+<div class="actions">
+<button id="connect" class="primary" type="button">Подключиться</button>
+</div>
+<p class="muted">При ошибке VPN или прокси прямое подключение автоматически не включается.</p>
+</article>
+<article>
+<div class="section-heading">
+<h3>Профили</h3>
+<button id="new-profile" type="button">Добавить подключение</button>
+</div>
+<div class="actions"><button id="check-all" type="button">Проверить все</button><button id="check-cancel" type="button" disabled>Отменить проверки</button></div>
+<p class="muted">Preflight проверяет настройки и доступность endpoint, но не подтверждает VPN-туннель, аутентификацию или интернет. Private/local адреса не сканируются.</p>
+<div id="profile-list">
+</div>
+</article>
+<article>
+<h3 id="form-title">Добавить подключение</h3>
+<label class="import">Загрузить .ovpn / WireGuard .conf<input id="import-file" type="file" accept=".ovpn,.conf,text/plain">
+</label>
+<p id="connection-summary" role="status">Импортируйте файл VPN или выберите тип и заполните поля ниже. Сохранение не меняет текущее подключение.</p>
+<details>
+<summary>Дополнительно об импорте</summary>
+<label>Кодировка файла<select id="ovpn-encoding">
+<option value="">Auto: UTF-8 / UTF-16 BOM</option>
+<option value="utf-8">UTF-8</option>
+<option value="utf-16">UTF-16 с BOM</option>
+<option value="windows-1251">Windows-1251</option>
+<option value="windows-1252">Windows-1252</option>
+</select>
+</label>
+<pre id="converter-analysis">
+</pre>
+<pre id="connection-error-detail">
+</pre>
+</details>
+<form id="profile-form">
+<div class="fields">
+<label>Название<input name="name" required maxlength="80">
+</label>
+<label>Тип<select name="type" id="profile-type">
+<option value="direct">Прямое подключение (Direct)</option>
+<option value="socks5">SOCKS5</option>
+<option value="http">HTTP CONNECT</option>
+<option value="openvpn">OpenVPN</option>
+<option value="wireguard">WireGuard</option>
+</select>
+</label>
+</div>
+<div id="endpoint-fields" class="fields hidden">
+<label>Сервер<input name="server" autocomplete="off">
+</label>
+<label id="port-field">Порт<input name="port" type="number" min="1" max="65535">
+</label>
+<label>DNS профиля<input name="dns_servers" placeholder="Автоматически, если пусто">
+</label>
+</div>
+<div id="credentials-fields" class="fields hidden">
+<label id="username-field"><span id="username-caption">Логин (необязательно)</span><input name="username" autocomplete="username">
+</label>
+<label id="password-field"><span id="password-caption">Пароль (необязательно)</span><input name="password" type="password" autocomplete="new-password" placeholder="Оставьте пустым, чтобы сохранить прежний">
+</label>
+</div>
+<label id="clear-auth-label" class="hidden">
+<input id="clear-auth" type="checkbox"> Удалить сохранённые логин и пароль прокси</label>
+<details id="connection-advanced">
+<summary>Дополнительные настройки</summary>
+<div id="openvpn-fields" class="hidden">
+<label>Сервер из файла<select id="ovpn-remote-select">
+</select>
+</label>
+<input name="ovpn_remote" type="hidden" value="0">
+<label>Transport<select name="ovpn_proto">
+<option value="">Из config</option>
+<option value="udp">UDP</option>
+<option value="udp4">UDP IPv4</option>
+<option value="tcp">TCP</option>
+<option value="tcp-client">TCP client</option>
+<option value="tcp4-client">TCP IPv4 client</option>
+<option value="udp6">UDP IPv6 (не поддерживается)</option>
+<option value="tcp6-client">TCP IPv6 (не поддерживается)</option>
+</select>
+</label>
+<pre id="ovpn-import-info">
+</pre>
+<label>Имя сертификата сервера, если задано отдельно<input name="ovpn_server_name" autocomplete="off">
+</label>
+<label>Конфигурация (ключи скрыты; для замены импортируйте файл)<textarea name="config" rows="8" spellcheck="false" autocomplete="off">
+</textarea>
+</label>
+</div>
+<div id="wireguard-fields" class="fields hidden">
+<label>Private key<input name="wg_private_key" type="password" autocomplete="new-password">
+</label>
+<label>Peer public key<input name="wg_peer_key">
+</label>
+<label>Interface address<input name="wg_address" placeholder="10.7.0.2/32">
+</label>
+<label>Preshared key<input name="wg_preshared_key" type="password" autocomplete="new-password">
+</label>
+<label>Allowed IPs<input name="wg_allowed_ips" value="0.0.0.0/0">
+</label>
+<label>MTU<input name="wg_mtu" type="number" min="576" max="9000" value="1420">
+</label>
+<label>Keepalive<input name="wg_keepalive" type="number" min="0" max="65535" value="25">
+</label>
+</div>
+<p id="secret-note" class="muted">Исходный файл, ключи и пароли сохраняются приватно. Прокси передаёт TCP и DNS; остальной UDP блокируется. Пустое поле пароля или ключа при редактировании сохраняет прежний.</p>
+</details>
+<label id="import-consent-label" class="hidden">
+<input id="import-consent" type="checkbox"> Подтверждаю изменения безопасности, указанные в подробностях импорта</label>
+<div class="actions">
+<button id="profile-save" class="primary" type="submit">Сохранить профиль</button>
+<button id="cancel-edit" type="button">Отменить</button>
+</div>
+</form>
+</article>
+</section>
+<section id="logs" class="panel hidden"><article><h3>Логи и диагностика</h3>
+<div class="fields"><label>Компонент<select id="logs-component"><option value="all">Все</option><option value="core">PiRate / Connections</option><option value="openvpn">OpenVPN</option><option value="wireguard">WireGuard</option><option value="socks5">SOCKS5</option><option value="http">HTTP Proxy</option><option value="wifi">hostapd / Wi-Fi</option><option value="dns">DHCP / DNS</option><option value="firewall">Firewall / fail-closed</option><option value="system">Installer / services</option></select></label>
+<label>Уровень<select id="logs-severity"><option value="all">All</option><option value="info">Info</option><option value="warning">Warning</option><option value="error">Error</option></select></label></div>
+<label>Поиск<input id="logs-search" type="search" maxlength="200" placeholder="Текст сообщения"></label><div class="actions"><button id="logs-refresh" type="button">Обновить</button><button id="logs-clear-profile" type="button">Все профили</button><button id="logs-copy" type="button">Копировать ошибку</button><button id="logs-download" type="button">Скачать .log</button><button id="diagnostics-download" type="button">Диагностика .zip</button></div>
+<p class="muted">Обновление каждые 5 секунд, пока вкладка открыта. Секреты скрываются в интерфейсе и выгрузках.</p><p id="logs-scope" class="muted"></p>
+<h3>Последняя ошибка</h3><pre id="logs-latest" class="error"></pre></article><pre id="logs-entries" class="log-terminal" role="log" aria-label="Журнал событий UTC" tabindex="0"></pre></section>
+<section id="system" class="panel hidden">
+<article>
+<h3>DNS-политика</h3>
+<p class="muted">По умолчанию запросы идут через выбранное подключение. Изменение применяется при следующем подключении.</p>
+<div class="fields">
+<label>DNS<select id="dns-mode">
+<option value="auto">Автоматически — через выбранное соединение</option>
+<option value="manual">Указать DNS вручную</option>
+</select>
+</label>
+<label id="manual-dns-label" class="hidden">Адрес DNS или HTTPS DoH<input id="dns-servers" placeholder="10.0.0.53 или https://resolver/dns-query">
+</label>
+</div>
+<button id="dns-test" type="button">Проверить DNS без применения</button>
+<p id="dns-test-result" role="status">
+</p>
+</article>
+<article>
+<h3>Система</h3>
+<dl class="system-values">
+<dt>Версия</dt>
+<dd id="system-version">—</dd>
+<dt>Время работы</dt>
+<dd id="system-uptime">—</dd>
+<dt>Загрузка CPU</dt>
+<dd id="system-cpu">—</dd>
+<dt>Память</dt>
+<dd id="system-ram">—</dd>
+<dt>Температура</dt>
+<dd id="system-temperature">—</dd>
+</dl>
+<p id="restore-state" class="muted">
+</p>
+</article>
+<article>
+<h3>Пароль администратора</h3>
+<p id="admin-availability" class="muted">Проверяем возможность смены пароля…</p>
+<form id="admin-form" class="hidden">
+<div class="fields">
+<label>Текущий пароль<input id="admin-current" type="password" autocomplete="current-password" required>
+</label>
+<label>Новый пароль<input id="admin-new" type="password" autocomplete="new-password" minlength="8" maxlength="20" required>
+</label>
+<label>Повторите новый пароль<input id="admin-repeat" type="password" autocomplete="new-password" minlength="8" maxlength="20" required>
+</label>
+</div>
+<button type="submit">Изменить пароль</button>
+</form>
+</article>
+<article>
+<h3>Службы и диагностика</h3>
+<p id="service-state">Нет данных</p>
+<details>
+<summary>Дополнительная диагностика</summary>
+<button id="system-diagnostics" type="button">Обновить диагностику</button>
+<pre id="system-diagnostics-data">
+</pre>
+</details>
+<p class="muted">Резервное копирование через текущий API не поддерживается.</p>
+</article>
+</section>
+<button id="open-logs" type="button">Открыть логи</button>
+<details id="support" class="hidden">
+<summary>Подробности ошибки для поддержки</summary>
+<button id="support-load" type="button">Показать диагностику</button>
+<pre id="support-data">
+</pre>
+</details>
+<footer>PiRate · Локальное управление домашней сетью</footer>
+</main>
+</div>
+<script src="/openvpn_import.js">
+</script>
+<script src="/mvp.js">
+</script>
+</body>
+</html>

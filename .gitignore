@@ -1,0 +1,34 @@
+__pycache__/
+*.py[cod]
+.venv/
+.pytest_cache/
+
+# Local profile databases and atomic-write/lock artifacts
+profiles.json
+wifi.lock
+.journal-*
+
+# Local reviewed deployment artifacts
+/artifacts/cross_uid/
+
+# Functional MVP local releases and development runtime
+/artifacts/releases/
+/artifacts/mvp-session/
+
+# Private development/lab material; public releases use an explicit allowlist.
+/artifacts/
+/legacy-lab/
+*.zip
+*.pyz
+*.tar.gz
+*.log
+*.pcap
+*.pcapng
+*.key
+*.pem
+.env
+.env.*
+*credentials*.json
+*credentials*.txt
+/runtime/
+/.private/

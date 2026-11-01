@@ -1,0 +1,59 @@
+#!/usr/bin/env python3
+"""Start PiRate's local functional WebUI from a source/release directory."""
+import argparse
+import os
+from pathlib import Path
+import sys
+parser=argparse.ArgumentParser(description='PiRate local WebUI and connection proxy')
+parser.add_argument('command',choices=['web','status','passwd','tunnel-port','management','diagnostics'],nargs='?',default='web')
+parser.add_argument('--port',type=int,default=int(os.environ.get('GATE_WEB_PORT','8765')))
+parser.add_argument('--proxy-port',type=int,default=int(os.environ.get('PIRATE_PROXY_PORT','8088')))
+parser.add_argument('--data-dir',default=os.environ.get('PIRATE_DATA_DIR',str(Path.home()/'.local/share/pirate')))
+parser.add_argument('--native-vpn',action='store_true',help='Enable real VPN namespaces (implies router mode; requires CAP_NET_ADMIN/SYS_ADMIN and VPN tools)')
+parser.add_argument('--router-mode',action='store_true',help='Enable LAN gateway apply (requires CAP_NET_ADMIN; default OFF)')
+parser.add_argument('--restore-lan-block',action='store_true',help='Restore saved LAN DROP policy only; early boot, no AP or upstream activation')
+parser.add_argument('--check-url',default=os.environ.get('PIRATE_CHECK_URL','https://api.ipify.org/'))
+parser.add_argument('value',nargs='?',help='Tunnel port or management enable/disable')
+parser.add_argument('--interface')
+parser.add_argument('--subnet')
+parser.add_argument('--address')
+parser.add_argument('--output',help='Private diagnostics archive path (must not exist)')
+parser.add_argument('--brief',action='store_true')
+args=parser.parse_args()
+if args.command!='web':
+    sys.path.insert(0,str(Path(__file__).resolve().parents[1]))
+    from gate_core.mvp import admin
+    from gate_core.mvp.proxy import ConnectionError
+    try:
+        if args.command=='status':admin.banner(args.brief)
+        elif args.command=='passwd':admin.change_password()
+        elif args.command=='tunnel-port':
+            if args.value is None:parser.error('Specify local tunnel port')
+            admin.tunnel_port(int(args.value))
+        elif args.command=='diagnostics':
+            if args.value!='collect':parser.error('Use sudo pirate diagnostics collect')
+            from gate_core.mvp.diagnostics import collect
+            collect(args.data_dir if any(arg=='--data-dir' or arg.startswith('--data-dir=') for arg in sys.argv) else '/var/lib/pirate',output=args.output)
+        elif args.command=='management':admin.trusted_management(args.value,args.interface,args.subnet,args.address)
+    except (OSError,ValueError,ConnectionError) as exc:
+        print('PiRate: '+str(exc),file=sys.stderr);sys.exit(1)
+    sys.exit(0)
+if not 1<=args.port<=65535 or not 1<=args.proxy_port<=65535 or args.port==args.proxy_port:parser.error('Choose two different ports between1 and65535')
+os.environ.update(GATE_WEB_PORT=str(args.port),PIRATE_PROXY_PORT=str(args.proxy_port),PIRATE_DATA_DIR=args.data_dir,PIRATE_CHECK_URL=args.check_url)
+if args.native_vpn:os.environ['PIRATE_NATIVE_TUNNELS']='1'
+if args.router_mode or args.native_vpn or args.restore_lan_block:os.environ['PIRATE_ROUTER_MODE']='1'
+if args.restore_lan_block:
+    import fcntl
+    from types import SimpleNamespace
+    sys.path.insert(0,str(Path(__file__).resolve().parents[1]))
+    from gate_core.mvp.router import RouterGateway
+    directory=Path(args.data_dir)/'runtime'
+    if (directory/'router.json').exists():
+        with (directory/'connection.lock').open('a') as lock:
+            fcntl.flock(lock,fcntl.LOCK_EX|fcntl.LOCK_NB)
+            RouterGateway(SimpleNamespace(directory=directory))
+        print('Saved LAN policy: BLOCKED; AP and upstream not started',flush=True)
+    else:print('No saved LAN configuration; AP and upstream not started',flush=True)
+    sys.exit(0)
+server=Path(__file__).resolve().parents[1]/'web/server.py'
+os.execv(sys.executable,[sys.executable,'-B',str(server)])

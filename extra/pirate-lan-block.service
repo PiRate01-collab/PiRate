@@ -1,0 +1,15 @@
+[Unit]
+Description=PiRate saved LAN kill-switch before network startup
+DefaultDependencies=no
+After=local-fs.target nftables.service
+Before=network-pre.target pirate-ap.service hostapd.service dnsmasq.service
+Wants=network-pre.target
+ConditionPathExists=/var/lib/pirate/runtime/router.json
+
+[Service]
+Type=oneshot
+ExecStart=/opt/pirate/bin/pirate --data-dir /var/lib/pirate --restore-lan-block
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target

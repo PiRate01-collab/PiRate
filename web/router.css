@@ -1,0 +1,139 @@
+:root{font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;color:#202b43;background:#f4f6fb;color-scheme:light;font-synthesis:none;--accent:#5559db;--line:#e5e9f2;--muted:#6b7690}
+*{box-sizing:border-box}
+body{margin:0}
+button,input,select,textarea{font:inherit}
+button,input,select,textarea,summary{-webkit-tap-highlight-color:transparent}
+button{cursor:pointer}
+.shell{display:grid;grid-template-columns:232px minmax(0,1fr);min-height:100vh}
+aside{background:#172239;color:#fff;padding:38px 24px;display:flex;flex-direction:column;position:sticky;top:0;height:100vh}
+h1{font-size:29px;letter-spacing:-1.3px;margin:0}
+aside .muted{color:#a1afca;font-size:12px;line-height:1.7}
+nav{display:grid;gap:9px;margin-top:42px}
+.nav{background:transparent;border:0;color:#aebbd3;text-align:left;padding:14px 18px;border-radius:12px;font-size:14px;font-weight:600}
+.nav.active{background:#5559db;color:#fff;box-shadow:0 5px 18px #10152450}
+.nav:hover{color:#fff;background:#303c59}
+.nav.active:hover{background:#6266e4}
+.sidebar-note{margin-top:auto;color:#8f9ebc;font-size:12px;line-height:1.8;padding-top:50px}
+main{width:100%;max-width:1280px;margin:0 auto;padding:40px 44px}
+header{display:flex;justify-content:space-between;align-items:center;gap:16px;margin-bottom:26px}
+.eyebrow{font-size:10px;letter-spacing:2.5px;color:var(--muted);font-weight:750;margin:0 0 9px}
+h2{font-size:32px;letter-spacing:-1px;margin:0;font-weight:700}
+h3{font-size:17px;line-height:1.5;margin:0 0 12px;letter-spacing:-.3px}
+p{line-height:1.65}
+.intro{margin:-8px 0 26px;color:var(--muted);font-size:14px}
+.muted,footer,small{font-size:12px;color:var(--muted);line-height:1.65}
+.chip{padding:9px 14px;border:1px solid var(--line);border-radius:24px;font-size:12px;background:#fff;white-space:normal}
+.chip:before{content:"";display:inline-block;width:7px;height:7px;border-radius:50%;background:#8993ac;margin-right:8px}
+.cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;margin-bottom:20px}
+.cards article h3{font-size:21px;overflow-wrap:anywhere;letter-spacing:-.6px}
+.cards article>p:first-child{margin-top:0;font-weight:550}
+.cards article{margin:0;padding:23px;min-height:150px}
+.cards details{font-size:12px}
+article{background:#fff;border:1px solid var(--line);border-radius:17px;margin-bottom:20px;padding:26px;box-shadow:0 4px 20px #24335003}
+button{border:1px solid #dce1ed;color:#34435f;background:#fff;padding:11px 16px;border-radius:9px;font-size:13px;font-weight:550;transition:background .15s,border-color .15s}
+button:hover{background:#f0f2fb;border-color:#a9b2d0}
+.primary{background:var(--accent);border-color:var(--accent);color:#fff;box-shadow:0 3px 8px #5559db18}
+.primary:hover{background:#4448c5;border-color:#4448c5}
+.danger{color:#b34455;border-color:#eed5da}
+.danger:hover{background:#fff2f4}
+button:disabled{cursor:default;opacity:.48}
+.fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:17px 22px;margin-bottom:20px}
+label{font-size:13px;font-weight:550;line-height:1.6;min-width:0}
+input,select,textarea{display:block;width:100%;min-width:0;max-width:100%;background:#fcfdff;color:#202b43;border:1px solid #d9dfeb;border-radius:9px;padding:12px;margin:8px 0;font-size:14px}
+input[type=checkbox]{display:inline-block;width:auto;margin-right:8px}
+input[type=file]{font-size:12px}
+textarea{font:12px ui-monospace,monospace;line-height:1.6;resize:vertical}
+.actions{display:flex;align-items:center;gap:9px;flex-wrap:wrap;margin:18px 0}
+.hidden,[hidden]{display:none!important}
+.section-heading,.profile{display:flex;align-items:center;justify-content:space-between;gap:16px}
+.profile{padding:18px 0;border-bottom:1px solid var(--line)}
+.profile:last-child{border-bottom:0}
+.profile span{font-size:12px;color:var(--muted)}
+.profile .actions{margin:0;flex-shrink:0}
+.profile .actions button{padding:8px 11px;font-size:12px}
+.system-values{display:grid;grid-template-columns:1fr 1fr;gap:18px;font-size:14px}
+dt{color:var(--muted)}
+dd{margin:0;text-align:right;font-weight:550}
+.import{display:block;padding:20px;background:#f8f9fe;border:1px dashed #c7cce7;border-radius:12px;margin-bottom:20px;color:#4349a9}
+.import input{background:transparent;border:0;padding:0}
+#message:empty{display:none}
+#message{padding:16px 20px;border:1px solid #cfdfdf;border-radius:12px;margin-bottom:22px;background:#edf7f4;color:#246653;font-size:14px}
+#message.error{background:#fff1f2;border-color:#f0d6da;color:#a13c4b}
+#confirmation{position:sticky;top:12px;z-index:2;border:1px solid #e9cf94;background:#fffaf0;box-shadow:0 8px 28px #66480012}
+#support{margin-top:25px;padding:20px;background:#fff;border:1px solid #e0cbcb;border-radius:12px}
+details{margin:16px 0;font-size:13px}
+summary{cursor:pointer;color:#59647d;line-height:1.7;font-size:12px;font-weight:550}
+details[open]>summary{margin-bottom:16px}
+pre{white-space:pre-wrap;overflow-wrap:anywhere;font:12px/1.7 ui-monospace,monospace;background:#f6f7fb;padding:14px;border-radius:9px;max-height:420px;overflow:auto}
+pre:empty{display:none}
+code{font-size:13px}
+footer{margin:34px 0 0;font-size:11px}
+.quick-connect{display:grid;grid-template-columns:1.2fr 1fr auto;gap:24px;align-items:center;border-top:3px solid var(--accent)}
+.quick-connect p{margin:0}
+.quick-connect h3{margin-bottom:4px}
+.quick-connect select{margin-bottom:0}
+.quick-connect button{align-self:end;margin-bottom:1px}
+:focus-visible{outline:3px solid #878bf2;outline-offset:3px}
+#profile-form{scroll-margin-top:24px}
+#connection-advanced{border-top:1px solid var(--line);padding-top:16px}
+#wifi-clients:empty:after{content:"Нет подключённых устройств"}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}
+}
+@media(max-width:1100px){main{padding:32px 28px}
+.shell{grid-template-columns:200px minmax(0,1fr)}
+aside{padding:32px 20px}
+.cards{grid-template-columns:repeat(2,minmax(0,1fr))}
+.quick-connect{grid-template-columns:1fr 1fr}
+.quick-connect>div{grid-column:1/-1}
+.profile{align-items:flex-start;flex-direction:column}
+}
+@media(max-width:700px){.shell{display:block}
+aside{height:auto;position:static;padding:20px 18px 14px}
+h1{font-size:25px}
+aside .muted,.sidebar-note{display:none}
+nav{display:flex;gap:5px;margin-top:20px;overflow:auto}
+.nav{padding:11px 12px;white-space:nowrap;font-size:12px;flex:1;text-align:center}
+main{padding:26px 16px}
+.fields{grid-template-columns:1fr}
+.cards{gap:12px}
+.cards article{padding:18px;min-height:140px}
+.cards article h3{font-size:18px}
+.eyebrow{font-size:9px}
+.system-values{font-size:13px}
+h2{font-size:27px}
+.chip{max-width:48%;font-size:11px;padding:8px 11px}
+article{padding:20px;border-radius:14px}
+.quick-connect{grid-template-columns:1fr;gap:12px}
+.quick-connect>div{grid-column:auto}
+.quick-connect button{width:100%}
+.section-heading{align-items:flex-start;flex-wrap:wrap}
+.actions button{min-height:42px}
+#confirmation{top:8px}
+.profile{gap:12px}
+.profile .actions{gap:7px;flex-shrink:1}
+.import{padding:14px}
+}
+@media(max-width:370px){.cards{grid-template-columns:1fr}
+nav{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));overflow:visible}
+.nav{padding:10px 8px;min-width:0;white-space:normal}
+header{flex-wrap:wrap}
+header>div{min-width:0;max-width:100%}
+header .chip{min-width:0;max-width:100%;overflow-wrap:anywhere}
+}
+
+
+#ap-profile-list .profile>strong{min-width:0;overflow-wrap:anywhere}
+#ap-profile-list .actions{max-width:100%}
+
+/* Wi-Fi uses visible sections, with the existing responsive field grid. */
+#wifi .wifi-settings-group{min-width:0;margin:20px 0 0;padding:18px 0 0;border:0;border-top:1px solid var(--line)}
+#wifi .wifi-settings-group legend{float:left;width:100%;padding:0;margin:0 0 14px;font-size:15px;font-weight:650}
+#wifi .wifi-settings-group .fields{clear:both;margin-bottom:0}
+#wifi .wifi-settings-group .actions{margin-bottom:0}
+#wifi h4{font-size:14px;margin:22px 0 10px}
+#wifi pre{max-height:none;overflow:visible}
+
+/* One terminal, preserving long diagnostics without widening mobile layout. */
+.log-terminal {font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:12px;line-height:1.55;white-space:pre;overflow:auto;max-height:65vh;min-height:180px;max-width:100%;padding:12px;background:#101722;color:#e3eaf3;border-radius:8px;tab-size:2;}
+.telegram-link {display:inline-flex;align-items:center;gap:8px;min-height:44px;text-decoration:none;}
+@media(max-width:600px){.log-terminal{font-size:11px;max-height:55vh}.telegram-link{white-space:nowrap}}
